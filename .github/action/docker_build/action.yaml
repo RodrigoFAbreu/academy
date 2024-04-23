@@ -3,16 +3,33 @@ description: description
 inputs:
   path_dockerfile:
     description: "Allows us to locate the correct Dockerfile, even if it has a different name or is located in a different directory."
-    required: true
+    required: false
+    default: "Dockerfile"
   image_name:
     description: "Specifies the name for the generated Docker image."
-    required: true
+    required: false
   tag_name:
-    description: ""
-    required: true
+    description: "Specifies the tag to be added to the final image."
+    required: false
 runs:
   using: composite
   steps:
     - run: |
-        docker build . --file Dockerfile --tag academy:$(date +%s)
+        if [ -z "${{ inputs.tag_name }}" ]; then
+            echo "TAG=$(date +%s)" >> $GITHUB_ENV
+        else
+            echo "TAG=${{ inputs.tag_name }}" >> $GITHUB_ENV
+        fi
+    - run: |
+        if [ -z "${{ inputs.path_dockerfile }}" ]; then
+            echo "DOCKERFILE_PATH=Dockerfile" >> $GITHUB_ENV
+        else
+            echo "DOCKERFILE_PATH=${{ inputs.path_dockerfile }}" >> $GITHUB_ENV
+        fi
+    - run: echo "DOCKER_IMAGE_NAME=${{ inputs.image_name }}:$TAG" >> $GITHUB_ENV
+    - name: Build docker image
+      run: docker build . --file $DOCKERFILE_PATH --tag $DOCKER_IMAGE_NAME
       shell: bash
+  with:
+    tag_name: 1.0.0
+    path_dockerfile: Dockerfile
