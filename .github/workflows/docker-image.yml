@@ -14,6 +14,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - name: Build the Docker image
     - uses: RodrigoFAbreu/academy/.github/action/docker_build@main
     - name: List Docker images  
       run: docker images
