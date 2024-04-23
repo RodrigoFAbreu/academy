@@ -13,5 +13,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: RodrigoFAbreu/academy/.github/action/docker_build@main
+        with:
+          tag_name: 1.0.0
+          path_dockerfile: Dockerfile
+          image_name: academy
       - name: List Docker images
         run: docker images

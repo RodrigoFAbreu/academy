@@ -32,7 +32,3 @@ runs:
     - name: Build docker image
       run: docker build . --file $DOCKERFILE_PATH --tag $DOCKER_IMAGE_NAME
       shell: bash
-  with:
-    tag_name: 1.0.0
-    path_dockerfile: Dockerfile
-    image_name: academy
