@@ -19,13 +19,16 @@ runs:
         else
             echo "TAG=${{ inputs.tag_name }}" >> $GITHUB_ENV
         fi
+      shell: bash
     - run: |
         if [ -z "${{ inputs.path_dockerfile }}" ]; then
             echo "DOCKERFILE_PATH=Dockerfile" >> $GITHUB_ENV
         else
             echo "DOCKERFILE_PATH=${{ inputs.path_dockerfile }}" >> $GITHUB_ENV
         fi
+      shell: bash
     - run: echo "DOCKER_IMAGE_NAME=${{ inputs.image_name }}:$TAG" >> $GITHUB_ENV
+      shell: bash
     - name: Build docker image
       run: docker build . --file $DOCKERFILE_PATH --tag $DOCKER_IMAGE_NAME
       shell: bash
