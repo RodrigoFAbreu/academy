@@ -5,9 +5,20 @@ inputs:
     description: "dummy-input"
     required: false
     default: "Hello World!!!"
+  path_dockerfile:
+    description: "Allows us to locate the correct Dockerfile, even if it has a different name or is located in a different directory."
+    required: true
+  image_name:
+    description: "Specifies the name for the generated Docker image."
+    required: true
+  tag_name:
+    description: ""
+    required: true
 runs:
   using: composite
   steps:
     - run: |
-        echo "Hello World"
+        - uses: actions/checkout@v3
+        - name: Build the Docker image
+          run: docker build . --file Dockerfile --tag academy:$(date +%s)
       shell: bash
