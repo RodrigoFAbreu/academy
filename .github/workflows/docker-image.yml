@@ -18,3 +18,4 @@ jobs:
       run: docker build . --file Dockerfile --tag academy:$(date +%s)
     - name: List Docker images  
       run: docker images
+    - uses: RodrigoFAbreu/academy/.github/actions/docker_build@main
