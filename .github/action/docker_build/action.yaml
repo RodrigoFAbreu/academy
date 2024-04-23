@@ -4,7 +4,6 @@ inputs:
   path_dockerfile:
     description: "Allows us to locate the correct Dockerfile, even if it has a different name or is located in a different directory."
     required: false
-    default: "Dockerfile"
   image_name:
     description: "Specifies the name for the generated Docker image."
     required: false
@@ -33,3 +32,4 @@ runs:
   with:
     tag_name: 1.0.0
     path_dockerfile: Dockerfile
+    image_name: academy
