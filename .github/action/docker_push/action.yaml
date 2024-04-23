@@ -1,4 +1,4 @@
-name: build-push
+name: main
 description: description
 inputs:
   docker_username:
