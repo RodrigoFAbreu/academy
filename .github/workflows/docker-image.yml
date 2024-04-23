@@ -2,19 +2,16 @@ name: Academy Image CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-    - uses: RodrigoFAbreu/academy/.github/action/docker_build@main
-    - name: List Docker images  
-      run: docker images
+      - uses: actions/checkout@v3
+      - uses: RodrigoFAbreu/academy/.github/action/docker_build@main
+      - name: List Docker images
+        run: docker images
