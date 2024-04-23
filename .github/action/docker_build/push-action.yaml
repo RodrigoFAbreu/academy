@@ -1,4 +1,4 @@
-name: push-action
+name: build-push
 description: description
 inputs:
   docker_username:

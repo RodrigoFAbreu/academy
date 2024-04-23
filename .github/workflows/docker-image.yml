@@ -19,7 +19,7 @@ jobs:
       - name: List Docker images
         run: docker images
       - name: Login DockerHub
-        uses: RodrigoFAbreu/academy/.github/action/docker_build@push-action
+        uses: RodrigoFAbreu/academy/.github/action/docker_build@build-push
         with:
           docker_username: rodrigoabreu587
           image_name: academy
